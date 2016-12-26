@@ -7,6 +7,7 @@
 // --------------------------------------------------------------------------
 int main(int argc, char *argv[])
 {
+    std::cout<<"Connecting to drone\n";
     // AR.Drone class
     ARDrone ardrone;
 
@@ -56,14 +57,14 @@ int main(int argc, char *argv[])
 
         // Move
         double vx = 0.0, vy = 0.0, vz = 0.0, vr = 0.0;
-        if (key == 'i' || key == CV_VK_UP)    vx =  1.0;
-        if (key == 'k' || key == CV_VK_DOWN)  vx = -1.0;
-        if (key == 'u' || key == CV_VK_LEFT)  vr =  1.0;
-        if (key == 'o' || key == CV_VK_RIGHT) vr = -1.0;
-        if (key == 'j') vy =  1.0;
-        if (key == 'l') vy = -1.0;
-        if (key == 'q') vz =  1.0;
-        if (key == 'a') vz = -1.0;
+        if (key == 'w' || key == CV_VK_UP)    vx =  1.0;
+        if (key == 's' || key == CV_VK_DOWN)  vx = -1.0;
+        if (key == 'q' || key == CV_VK_LEFT)  vr =  1.0;
+        if (key == 'e' || key == CV_VK_RIGHT) vr = -1.0;
+        if (key == 'a') vy =  1.0;
+        if (key == 'd') vy = -1.0;
+        if (key == 'i') vz =  1.0;
+        if (key == 'k') vz = -1.0;
         ardrone.move3D(vx, vy, vz, vr);
 
         // Change camera

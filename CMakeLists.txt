@@ -20,13 +20,19 @@ set(ardrone_executable
 
 
 set(source_files ${main_executable} ${ardrone_executable})
-
+add_executable(cvdrone ${source_files})
 
 # dependency opencv
 find_package(OpenCV REQUIRED)
-
-
-
-add_executable(cvdrone ${source_files})
 target_link_libraries(cvdrone ${OpenCV_LIBS} )
+
+
+#dependency ffmpeg
+include(src/3rdparty/FindFFMPEG.cmake)
+target_link_libraries(cvdrone ${FFMPEG_LIBRARIES})
+
+
+
+
+
 
