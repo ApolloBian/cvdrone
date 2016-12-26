@@ -17,3 +17,6 @@ obj
 *.iobj
 *.ipdb
 *.exe
+cmake-build-debug
+.idea
+

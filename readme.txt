@@ -5,31 +5,11 @@
 -----------------------------------------------------------------
 
 INTRODUCTION
-  CV Drone is free software; you can redistribute it and/or
-  modify it under the terms of EITHER:
-   (1) The GNU Lesser General Public License as published by the Free
-       Software Foundation; either version 2.1 of the License, or (at
-       your option) any later version. The text of the GNU Lesser
-       General Public License is included with this library in the
-       file cvdrone-license-LGPL.txt.
-   (2) The BSD-style license that is included with this library in
-       the file cvdrone-license-BSD.txt.
+    This project is modified from [CV_Drone](https://github.com/puku0x/cvdrone) and is for my own personal purpose.
+    I managed to convert it to a ready to import clion project, and you can manage to hack it a little bit and build it with cmake
+    The original project uses VS, let me try to make it work under Mac.
 
-  This software is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the files
-  cvdrone-license-LGPL.txt and cvdrone-license-BSD.txt for more details.
 
-HOW TO INSTALL
-  Please unzip "cvdrone-master.zip" into an arbitrary directory.
-
-HOW TO UNINSTALL
-  Please delete the cvdrone folder.
-
-BEFORE YOU BUILD
-  You should install Visual Studio before you build CV Drone.
-  CV Drone supports VC++2010/2012/2013/2015.
-  To download VS, please see http://www.microsoft.com/visualstudio/eng/downloads .
 
 HOW TO USE
   1. Open \build\vs20xx\test.sln
