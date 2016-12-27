@@ -1,15 +1,20 @@
 #include "ardrone/ardrone.h"
+#include <string>
+#include <sstream>
 
-// --------------------------------------------------------------------------
-// main(Number of arguments, Argument values)
-// Description  : This is the entry point of the program.
-// Return value : SUCCESS:0  ERROR:-1
-// --------------------------------------------------------------------------
+
+
+// AR.Drone class
+ARDrone ardrone;
+
+// Infomation font init
+
+void infoShow(cv::String,cv::Mat);
+
+
 int main(int argc, char *argv[])
 {
     std::cout<<"Connecting to drone\n";
-    // AR.Drone class
-    ARDrone ardrone;
 
     // Initialize
     if (!ardrone.open()) {
@@ -40,6 +45,7 @@ int main(int argc, char *argv[])
     std::cout << "*    'Esc'   -- Exit                  *" << std::endl;
     std::cout << "*                                     *" << std::endl;
     std::cout << "***************************************" << std::endl;
+
 
     while (1) {
         // Key input
@@ -72,11 +78,93 @@ int main(int argc, char *argv[])
         if (key == 'c') ardrone.setCamera(++mode % 4);
 
         // Display the image
-        cv::imshow("camera", image);
+//        cv::imshow("camera", image);
+        infoShow("camera",image);
+
     }
 
-    // See you
     ardrone.close();
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+void infoShow(cv::String windowName, cv::Mat displayImg) {
+    using  namespace std;
+    CvFont infoFont;
+    cvInitFont(&infoFont,CV_FONT_HERSHEY_SIMPLEX,0.5,0.5,0,1,8);
+    CvMat resultImg = displayImg;
+    stringstream ss;
+    int hight = 20;
+    double vx,vy,vz;
+    double x,y,z;
+    ardrone.getPosition(&x,&y,&z);
+    ardrone.getVelocity(&vx,&vy,&vz);
+    double pitch = ardrone.getPitch();
+    double yaw = ardrone.getYaw();
+    double roll = ardrone.getRoll();
+
+    ss<<"Battery:"<<ardrone.getBatteryPercentage()<<"%";
+    string infostring = ss.str();
+    cvPutText(&resultImg,infostring.data(),cvPoint(20,hight),&infoFont,cvScalar(255,0,0));
+    hight += 20;
+    ss.clear();
+    ss.str("");
+
+    ss<<"Altitude:"<<ardrone.getAltitude();
+    infostring = ss.str();
+    cvPutText(&resultImg,infostring.data(),cvPoint(20,hight),&infoFont,cvScalar(255,0,0));
+    hight += 20;
+    ss.clear();
+    ss.str("");
+
+    ss<<"Velocity:("<<vx<<","<<vy<<","<<vz<<")";
+    infostring = ss.str();
+    cvPutText(&resultImg,infostring.data(),cvPoint(20,hight),&infoFont,cvScalar(255,0,0));
+    hight += 20;
+    ss.clear();
+    ss.str("");
+
+    ss<<"Position:("<<x<<","<<y<<","<<z<<")";
+    infostring = ss.str();
+    cvPutText(&resultImg,infostring.data(),cvPoint(20,hight),&infoFont,cvScalar(255,0,0));
+    hight += 20;
+    ss.clear();
+    ss.str("");
+
+    ss<<"Pitch:"<<pitch;
+    infostring = ss.str();
+    cvPutText(&resultImg,infostring.data(),cvPoint(20,hight),&infoFont,cvScalar(255,0,0));
+    hight += 20;
+    ss.clear();
+    ss.str("");
+
+    ss<<"Yaw:"<<yaw;
+    infostring = ss.str();
+    cvPutText(&resultImg,infostring.data(),cvPoint(20,hight),&infoFont,cvScalar(255,0,0));
+    hight += 20;
+    ss.clear();
+    ss.str("");
+
+    ss<<"Roll:"<<roll;
+    infostring = ss.str();
+    cvPutText(&resultImg,infostring.data(),cvPoint(20,hight),&infoFont,cvScalar(255,0,0));
+    ss.clear();
+    ss.str("");
+
+    cvPutText(&resultImg,infostring.data(),cvPoint(20,20),&infoFont,cvScalar(255,0,0));
+    cv::imshow(windowName,displayImg);
+}
+
+
