@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.6)
-project(cvdrone)
 set(CMAKE_CXX_STANDARD 11)
 set(PROJECT_SOURCE_DIR src)
 set(PROJECT_BINARY_DIR bin)
 
+project(cvdrone)
 set(main_executable src/main.cpp )
 set(ardrone_dir src/ardrone)
 set(ardrone_executable
@@ -31,6 +31,11 @@ target_link_libraries(cvdrone ${OpenCV_LIBS} )
 include(src/3rdparty/FindFFMPEG.cmake)
 target_link_libraries(cvdrone ${FFMPEG_LIBRARIES})
 
+
+project(demo)
+include_directories(src/)
+add_executable(demo samples/sample_camera_calibration.cpp ${ardrone_executable})
+target_link_libraries(demo ${OpenCV_LIBS} ${FFMPEG_LIBRARIES})
 
 
 

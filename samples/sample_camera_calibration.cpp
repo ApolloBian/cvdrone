@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
             // Show the image
             std::ostringstream stream;
             stream << "Captured " << images.size() << " image(s).";
-            cv::putText(frame, stream.str(), cv::Point(10, 20), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 1, cv::LINE_AA);
+            cv::putText(frame, stream.str(), cv::Point(10, 20), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 1);
             cv::imshow("Camera Calibration", frame);
         }
 
